@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <button onClick={async() => {
-          const res = await fetch('http://localhost:5000/users');
+          const res = await fetch('https://saasbinxx-prototype.onrender.com/users');
           const data = await res.json();
           console.log(data);
           SetResult(data)
