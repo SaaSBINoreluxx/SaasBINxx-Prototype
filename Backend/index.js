@@ -6,7 +6,7 @@ app.use(cors())
 
 app.get('/users', (req, res) => {
     res.send({
-        users: ['Juan Romero']
+        users: ['Juan Romero Alvarado']
     })
 });
 
