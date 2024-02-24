@@ -4,7 +4,7 @@
   display: flex;
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: white;  /* Fondo blanco para la aplicación */
+  background-color: #5d2375; /* Fondo morado para la aplicación */
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -21,10 +21,10 @@
 
 .App-header {
   width: 100%;
-  background-color: #800080;  /* Fondo morado para el header */
+  background-color: #ffffff;  /* Fondo morado para el header */
   padding: 20px 0;
   text-align: center;  /* Centra el contenido del header */
-  color: white;
+  color: rgb(255, 0, 225);
 }
 
 .App-link {
@@ -42,10 +42,12 @@
 }
 
 .container {
+  width: 80%;
   display: flex;
-  height: 100%;
-  width: 100%;
-  flex-grow: 1;
+  flex: 1;
+  justify-content: center;
+  align-items: center; /* Centra las tarjetas verticalmente */
+  background-color: #5d2375; /* Fondo morado para el contenedor */
 }
 
 .left-split, .right-split {
@@ -54,14 +56,29 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 90%;
+  height: 80%;
+  gap: 20px; /* Asegura que haya espacio entre las tarjetas */
+  margin: 0 10px; /* Agrega un margen horizontal para evitar que las tarjetas se peguen a los bordes */
 }
 
-.top-left, .bottom-left, .right-split {
+.top-left, .bottom-left {
+  background-color: white; /* Fondo blanco para las tarjetas */
+  border-radius: 15px; /* Bordes redondeados para las tarjetas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
+  padding: 20px; /* Espacio interior para las tarjetas */
+  width: 90%; /* Ajusta el ancho de las tarjetas */
+  height: 80%;
   display: flex;
-  flex-direction: column; /* Alinea los elementos verticalmente */
+  flex-direction: column;
+  align-items: center; /* Centra los contenidos de las tarjetas horizontalmente */
   justify-content: center;
-  align-items: center; /* Centra los elementos horizontalmente */
-  flex: 1;
+}
+
+.right-split {
+  background-color: white; /* Fondo blanco para la tarjeta */
+  border-radius: 15px; /* Bordes redondeados para la tarjeta */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
 }
 
 button {
