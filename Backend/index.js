@@ -32,13 +32,16 @@ app.get('/users', async(req, res) => {
 
 
 app.post('/adduser', async (req, res) => {
-    const name = req.body.name;
-    const status = req.body.status
+    const { name, status } = req.body;
 
-    const usersRef = db.collection('Users').doc('equipo2')
-    const data = await usersRef.set({
-        [name]: status
-    })
-
-    res.status(200).send('test pass')
+    try {
+        const docRef = await db.collection('Users').add({
+            name,
+            status
+        });
+        res.status(200).send(`Usuario agregado con éxito con ID: ${docRef.id}`);
+    } catch (error) {
+        console.error('Error al agregar usuario:', error);
+        res.status(500).send('Error al agregar usuario');
+    }
 })
