@@ -8,32 +8,29 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <button onClick={async() => {
-          const res = await fetch('https://saasbinxx-prototype.onrender.com/users');
-          const data = await res.json();
-          console.log(data);
-          SetResult(data)
-        }}>
-          Users
-        </button>
-
-        <p>
-          Haga clic en el botón par ver usuarios.
-        </p>
-
-        <p>
-          {JSON.stringify(result,null,2)}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img src="/path-to-your-logo.png" className="App-logo" alt="logo" />
       </header>
+      <div className="container">
+        <div className="left-split">
+          <div className="top-left">
+            <p>Soy operador en campo</p>
+            <button>Ingresar datos</button>
+          </div>
+          <div className="bottom-left">
+            <p>Soy operador de almacén</p>
+            <button>Ingresar datos</button>
+          </div>
+        </div>
+        <div className="right-split">
+          <p>Soy Administrador</p>
+          <button onClick={async () => {
+            const res = await fetch('https://saasbinxx-prototype.onrender.com/users');
+            const data = await res.json();
+            console.log(data);
+            SetResult(data)
+          }}>Gestionar</button>
+        </div>
+      </div>
     </div>
   );
 }
