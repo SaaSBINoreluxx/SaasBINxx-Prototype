@@ -5,7 +5,7 @@
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #5d2375; /* Fondo morado para la aplicación */
-  justify-content: center;
+  /*justify-content: center;*/
   align-items: center;
   flex-direction: column;
 }
@@ -16,13 +16,13 @@
 }
 
 .App-logo {
-  height: 40px;  /* Ajusta según el tamaño de tu logo */
+  height: 90px;  /* Ajusta según el tamaño de tu logo */
 }
 
 .App-header {
   width: 100%;
   background-color: #ffffff;  /* Fondo morado para el header */
-  padding: 20px 0;
+  padding: 16px 0;
   text-align: center;  /* Centra el contenido del header */
   color: rgb(255, 0, 225);
 }

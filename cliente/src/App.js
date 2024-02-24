@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
@@ -8,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src="/path-to-your-logo.png" className="App-logo" alt="logo" />
+        <img src="/logoApp.png" className="App-logo" alt="logo" />
       </header>
       <div className="container">
         <div className="left-split">
