@@ -23,7 +23,7 @@ function App() {
         </p>
 
         <p>
-          {JSON.stringify(result.users,null,2)}
+          {JSON.stringify(result,null,2)}
         </p>
         <a
           className="App-link"
