@@ -3,16 +3,15 @@
 }
 
 .form-container {
-    background-color: white; /* Fondo blanco para el formulario */
+    background-color: white; /* Fondo blanco para la lista */
     border-radius: 15px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
     padding: 20px; /* Espacio interior */
     width: 80%; /* O el ancho que prefieras */
-    margin: auto; /* Centra el contenedor del formulario en la página */
-    margin-top: 20px;
+    margin: 20px auto; /* Centra el contenedor de la lista en la página y añade espacio arriba y abajo */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra los contenidos del formulario horizontalmente */
+    align-items: center; /* Centra los contenidos de la lista horizontalmente */
 }
 
 .form-container h2 {
@@ -23,6 +22,7 @@
 .form-container form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%; /* Utiliza todo el ancho del contenedor del formulario */
 }
 
@@ -91,17 +91,6 @@ label {
     margin-bottom: 20px; /* Espacio entre cada grupo */
     flex: 1; /* Los fieldset se expanden para ocupar el espacio disponible */
     min-width: 280px; /* Mínimo ancho antes de que se envuelvan, ajusta según necesidad */
-    text-align: left; /* Alinea el contenido a la izquierda */
-}
-
-.form-container input[type="checkbox"],
-.form-container label {
-    display: inline-block; /* Hace que los checkboxes y las etiquetas sean en línea */
-    text-align: left; /* Alinea el texto de las etiquetas a la izquierda */
-}
-
-.form-container input[type="checkbox"] {
-    margin-right: 10px; /* Espacio a la derecha del checkbox */
 }
 
 .field-element{
@@ -109,4 +98,5 @@ label {
     align-items: center; /* Esto centra los elementos verticalmente */
     text-align: left;
     margin-bottom: 10px; /* Espacio entre cada elemento del fieldset */
+    width: 80%;
 }

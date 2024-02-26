@@ -11,11 +11,11 @@ function FormPage() {
             <div className="form-container">
                 <h2>Ingrese sus datos</h2>
                 <form>
-                    <input type="text" placeholder="Nombre" />
-                    <input type="text" placeholder="Apellido" />
-                    <input type="email" placeholder="Correo electrónico" />
-                    <input type="tel" placeholder="Teléfono" />
-                    <textarea placeholder="Mensaje"></textarea>
+                    <input className='field-element' type="text" placeholder="Nombre" />
+                    <input className='field-element' type="text" placeholder="Apellido" />
+                    <input className='field-element' type="email" placeholder="Correo electrónico" />
+                    <input className='field-element' type="tel" placeholder="Teléfono" />
+                    <textarea className='field-element'  placeholder="Mensaje"></textarea>
                     <button type="submit">Enviar</button>
                 </form>
             </div>
