@@ -90,7 +90,7 @@ label {
     padding: 10px;
     margin-bottom: 20px; /* Espacio entre cada grupo */
     flex: 1; /* Los fieldset se expanden para ocupar el espacio disponible */
-    min-width: 280px; /* Mínimo ancho antes de que se envuelvan, ajusta según necesidad */
+    min-width: 200px; /* Mínimo ancho antes de que se envuelvan, ajusta según necesidad */
 }
 
 .field-element{
