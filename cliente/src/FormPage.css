@@ -91,6 +91,14 @@ label {
     margin-bottom: 20px; /* Espacio entre cada grupo */
     flex: 1; /* Los fieldset se expanden para ocupar el espacio disponible */
     min-width: 200px; /* Mínimo ancho antes de que se envuelvan, ajusta según necesidad */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los contenidos de la lista horizontalmente */
+}
+
+.sub-fieldset{
+    width: 95%;
+    min-width: 180px;
 }
 
 .field-element{

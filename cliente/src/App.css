@@ -87,19 +87,16 @@ button {
   transition: background-color 0.3s ease;
   margin-top: 20px;
   width: 80%;
-  /* Asegura que el botón esté siempre debajo del texto */
 }
 
 button:hover {
-  background-color: #5c005c;
-  /* Color morado más oscuro al pasar el ratón */
+  background-color: #5c005c;  /* Color morado más oscuro al pasar el ratón */
 }
 
 p {
   margin: 20px 0;
   font-size: 20px;
-  color: #333;
-  /* Texto oscuro para contraste */
+  color: #333;  /* Texto oscuro para contraste */
 }
 
 .Route-link{
