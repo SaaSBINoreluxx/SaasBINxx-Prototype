@@ -11,7 +11,7 @@ function MainPage() {
             <div className="left-split">
                 <div className="top-left">
                     <p>Soy operador en campo</p>
-                    <Link to='/form'>
+                    <Link to='/form' className='Route-link'>
                         <button>Ingresar datos</button>
                     </Link>
                 </div>
