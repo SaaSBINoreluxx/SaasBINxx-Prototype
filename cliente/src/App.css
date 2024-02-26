@@ -76,7 +76,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
 }
 
-button {
+.standard-button {
   padding: 10px 20px;
   cursor: pointer;
   background-color: #800080;
@@ -89,7 +89,7 @@ button {
   width: 80%;
 }
 
-button:hover {
+.standard-button:hover {
   background-color: #5c005c;  /* Color morado más oscuro al pasar el ratón */
 }
 

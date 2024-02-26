@@ -30,7 +30,7 @@ function FormPage() {
                     <input className='field-element' type="text" placeholder="Apellido" />
                     <input className='field-element' type="text" placeholder="ID" />
                     <textarea className='field-element' placeholder="Mensaje"></textarea>
-                    <button type="submit">Enviar</button>
+                    <button className='standard-button' type="submit">Enviar</button>
                 </form>
             </div>
             <div className="inventory-container">
@@ -64,7 +64,7 @@ function FormPage() {
                         ))}
                     </fieldset>
                     <textarea className='field-element' placeholder="Observaciones"></textarea>
-                    <button type="submit">Enviar lista</button>
+                    <button className='standard-button' type="submit">Enviar lista</button>
                 </form>
             </div>
             <div className="form-container">
@@ -75,42 +75,67 @@ function FormPage() {
                             <label for="username">Hora y fecha:</label>
                             <input type="date" placeholder="Fecha" />
                             <input type="text" id="horaInicio" placeholder="Hora de inicio de procedimiento" />
-                            <button type="button" onClick={(e) => { e.preventDefault(); e.target.previousElementSibling.value = getCurrentTime(); }}>Obtener hora</button>
+                            <button className='standard-button' type="button" onClick={(e) => { e.preventDefault(); e.target.previousElementSibling.value = getCurrentTime(); }}>Obtener hora</button>
                         </fieldset>
 
                         <legend>Datos de servicio</legend>
                         <div>
-                            <label for="username">Entidad:</label>
-                            <input type="text" placeholder="Entidad que recibe el servicio" />
+                            <label for="Entidad">Entidad:</label>
+                            <input type="text" name="Entidad" placeholder="Entidad que recibe el servicio" />
                         </div>
-                        <input type="text" placeholder="Área" />
-                        <input type="text" placeholder="Ubicación" />
+                        <div>
+                            <label for="Area">Area:</label>
+                            <input type="text" name="Area" placeholder="Área" />
+                        </div>
+                        <div>
+                            <label for="Ubicacion">Ubicación:</label>
+                            <input type="text" name="Ubicacion" placeholder="Ubicación" />
+                        </div>
                     </fieldset>
 
                     <fieldset className="fieldset">
                         <legend>Datos del equipo</legend>
-                        <input type="text" placeholder="Denominación del equipo" />
-                        <input type="text" placeholder="Marca" />
-                        <input type="text" placeholder="Modelo" />
-                        <input type="text" placeholder="Serie" />
-                        <input type="text" placeholder="Código patrimonial" />
-                        <select label="Estado inicial" placeholder="Estado inicial">
-                            <option value="Operativo">Operativo</option>
-                            <option value="Inoperativo">Inoperativo</option>
-                            <option value="Parcialmente operativo">Parcialmente operativo</option>
-                        </select>
+                        <div>
+                            <label for="denominacionEQ">Descripción:</label>
+                            <input type="text" name= "denominacionEQ" placeholder="Denominación del equipo" />
+                        </div>
+                        <div>
+                            <label for="Marca">Marca:</label>
+                            <input type="text" name= "Marca" placeholder="Marca" />
+                        </div>
+                        <div>
+                            <label for="Modelo">Modelo:</label>
+                            <input type="text" name= "Modelo" placeholder="Modelo" />
+                        </div>
+                        <div>
+                            <label for="Serie">Serie:</label>
+                            <input type="text" name= "Serie" placeholder="Serie" />
+                        </div>
+                        <div>
+                            <label for="CodPat">Código patrimonial:</label>
+                            <input type="text" name= "CodPat" placeholder="Código patrimonial" />
+                        </div>
+                        <div>
+                            <label for="EstadoIni">Estado Inicial:</label>
+                            <select name="EstadoIni" placeholder="Estado inicial">
+                                <option value="Operativo">Operativo</option>
+                                <option value="Inoperativo">Inoperativo</option>
+                                <option value="Parcialmente operativo">Parcialmente operativo</option>
+                            </select>
+                        </div>
                     </fieldset>
 
                     <fieldset className="fieldset">
                         <legend>Datos del procedimiento</legend>
                         {activities.map((activity, index) => (
                             <div key={index} className="dynamic-field">
-                                <input type="text" placeholder="Descripción de la actividad ejecutada" value={activity} onChange={(e) => {
+                                <label for="Actividad"> Actividad {index+1}:  </label>
+                                <input name="Actividad" type="text" placeholder="Descripción de la actividad ejecutada" value={activity} onChange={(e) => {
                                     const newActivities = [...activities];
                                     newActivities[index] = e.target.value;
                                     setActivities(newActivities);
                                 }} />
-                                <button type="button" onClick={() => removeActivity(index)}>Eliminar</button>
+                                <button className="action-button" onClick={() => removeActivity(index)}>Eliminar</button>
                             </div>
                         ))}
                         <button type="button" onClick={addActivity}>Agregar actividad</button>
@@ -135,11 +160,11 @@ function FormPage() {
                         {requireSpareParts && <button type="button" onClick={addSparePart}>Agregar repuesto</button>}
 
                         <input type="text" placeholder="Hora de finalización de procedimiento" readOnly />
-                        <button type="button" onClick={(e) => { e.preventDefault(); e.target.previousElementSibling.value = getCurrentTime(); }}>Obtener hora</button>
+                        <button className='standard-button' type="button" onClick={(e) => { e.preventDefault(); e.target.previousElementSibling.value = getCurrentTime(); }}>Obtener hora</button>
                         <textarea placeholder="Observaciones"></textarea>
                     </fieldset>
 
-                    <button type="submit">Enviar Orden de Trabajo</button>
+                    <button className='standard-button' type="submit">Enviar Orden de Trabajo</button>
                 </form>
             </div>
         </div>
