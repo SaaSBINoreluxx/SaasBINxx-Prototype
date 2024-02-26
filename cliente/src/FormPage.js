@@ -49,6 +49,7 @@ function FormPage() {
                             </div>
                         ))}
                     </fieldset>
+                    <textarea className='field-element'  placeholder="Observaciones"></textarea>
                     <button type="submit">Enviar lista</button>
                 </form>
             </div>
