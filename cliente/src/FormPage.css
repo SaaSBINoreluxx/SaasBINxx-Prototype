@@ -1,0 +1,112 @@
+.form-page {
+    width: 80%;
+}
+
+.form-container {
+    background-color: white; /* Fondo blanco para el formulario */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
+    padding: 20px; /* Espacio interior */
+    width: 80%; /* O el ancho que prefieras */
+    margin: auto; /* Centra el contenedor del formulario en la página */
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los contenidos del formulario horizontalmente */
+}
+
+.form-container h2 {
+    color: #333; /* Texto oscuro para contraste */
+    margin-bottom: 20px; /* Espacio debajo del encabezado */
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Utiliza todo el ancho del contenedor del formulario */
+}
+
+.form-container input,
+.form-container textarea {
+    padding: 10px; /* Espacio interior para los campos de entrada */
+    margin-bottom: 20px; /* Espacio entre los campos de entrada */
+    border-radius: 5px; /* Bordes ligeramente redondeados para los campos de entrada */
+    border: 1px solid #ddd; /* Borde sutil para los campos */
+}
+
+.form-container button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #800080; /* Color de fondo para el botón */
+    color: white; /* Color del texto para el botón */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados para el botón */
+    font-size: 16px; /* Tamaño de fuente para el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el botón */
+}
+
+.form-container button:hover {
+    background-color: #5c005c; /* Color de fondo para el botón cuando se pasa el ratón */
+}
+
+.inventory-container {
+    background-color: white; /* Fondo blanco para la lista */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
+    padding: 20px; /* Espacio interior */
+    width: 80%; /* O el ancho que prefieras */
+    margin: 20px auto; /* Centra el contenedor de la lista en la página y añade espacio arriba y abajo */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los contenidos de la lista horizontalmente */
+}
+
+.inventory-container form {
+    width: 100%; /* Ajusta el ancho del formulario al del contenedor */
+    display: flex; /* Habilita flexbox para los elementos del formulario */
+    flex-wrap: wrap; /* Permite que los elementos del formulario se ajusten según el tamaño */
+    justify-content: space-around; /* Espacia los elementos uniformemente */
+}
+
+fieldset {
+    border: 1px solid #ddd; /* Borde sutil para cada grupo */
+    padding: 10px;
+    margin-bottom: 20px; /* Espacio entre cada grupo */
+    width: 100%; /* Utiliza todo el ancho del contenedor */
+}
+
+legend {
+    padding: 0 10px; /* Espacio alrededor del texto de la leyenda */
+    color: #333; /* Texto oscuro para contraste */
+    font-size: 18px; /* Tamaño de fuente para la leyenda */
+}
+
+label {
+    margin-left: 8px; /* Espacio entre el checkbox y su etiqueta */
+}
+
+.fieldset {
+    border: 1px solid #ddd; /* Borde sutil para cada grupo */
+    padding: 10px;
+    margin-bottom: 20px; /* Espacio entre cada grupo */
+    flex: 1; /* Los fieldset se expanden para ocupar el espacio disponible */
+    min-width: 280px; /* Mínimo ancho antes de que se envuelvan, ajusta según necesidad */
+    text-align: left; /* Alinea el contenido a la izquierda */
+}
+
+.form-container input[type="checkbox"],
+.form-container label {
+    display: inline-block; /* Hace que los checkboxes y las etiquetas sean en línea */
+    text-align: left; /* Alinea el texto de las etiquetas a la izquierda */
+}
+
+.form-container input[type="checkbox"] {
+    margin-right: 10px; /* Espacio a la derecha del checkbox */
+}
+
+.field-element{
+    display: flex; /* Esto alinea los elementos (checkbox y label) en una fila */
+    align-items: center; /* Esto centra los elementos verticalmente */
+    text-align: left;
+    margin-bottom: 10px; /* Espacio entre cada elemento del fieldset */
+}
