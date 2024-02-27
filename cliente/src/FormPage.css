@@ -108,10 +108,19 @@ label {
     margin-bottom: 10px; /* Espacio entre cada elemento del fieldset */
     width: 80%;
 }
+.dynamic-field-container{
+    width: 100%;
+    display: block;
+    justify-content: center;
+    margin-bottom: 30px;
+}
 
 .dynamic-field{
     display: flex;
-    width: 80%;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .fieldset .dynamic-field .action-button{
@@ -123,5 +132,11 @@ label {
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    width: 80%;
+    width: 20%;
 }
+
+.dynamic-field input{
+    width: 60%;
+    margin: 0%;
+}
+

@@ -97,23 +97,23 @@ function FormPage() {
                         <legend>Datos del equipo</legend>
                         <div>
                             <label for="denominacionEQ">Descripción:</label>
-                            <input type="text" name= "denominacionEQ" placeholder="Denominación del equipo" />
+                            <input type="text" name="denominacionEQ" placeholder="Denominación del equipo" />
                         </div>
                         <div>
                             <label for="Marca">Marca:</label>
-                            <input type="text" name= "Marca" placeholder="Marca" />
+                            <input type="text" name="Marca" placeholder="Marca" />
                         </div>
                         <div>
                             <label for="Modelo">Modelo:</label>
-                            <input type="text" name= "Modelo" placeholder="Modelo" />
+                            <input type="text" name="Modelo" placeholder="Modelo" />
                         </div>
                         <div>
                             <label for="Serie">Serie:</label>
-                            <input type="text" name= "Serie" placeholder="Serie" />
+                            <input type="text" name="Serie" placeholder="Serie" />
                         </div>
                         <div>
                             <label for="CodPat">Código patrimonial:</label>
-                            <input type="text" name= "CodPat" placeholder="Código patrimonial" />
+                            <input type="text" name="CodPat" placeholder="Código patrimonial" />
                         </div>
                         <div>
                             <label for="EstadoIni">Estado Inicial:</label>
@@ -127,22 +127,24 @@ function FormPage() {
 
                     <fieldset className="fieldset">
                         <legend>Datos del procedimiento</legend>
-                        {activities.map((activity, index) => (
-                            <div key={index} className="dynamic-field">
-                                <label for="Actividad"> Actividad {index+1}:  </label>
-                                <input name="Actividad" type="text" placeholder="Descripción de la actividad ejecutada" value={activity} onChange={(e) => {
-                                    const newActivities = [...activities];
-                                    newActivities[index] = e.target.value;
-                                    setActivities(newActivities);
-                                }} />
-                                <button className="action-button" onClick={() => removeActivity(index)}>Eliminar</button>
-                            </div>
-                        ))}
-                        <button type="button" onClick={addActivity}>Agregar actividad</button>
+                        <div className='dynamic-field-container'>
+                            {activities.map((activity, index) => (
+                                <div key={index} className="dynamic-field">
+                                    <label for="Actividad"> Actividad {index + 1}:  </label>
+                                    <input name="Actividad" type="text" placeholder="Descripción de la actividad ejecutada" value={activity} onChange={(e) => {
+                                        const newActivities = [...activities];
+                                        newActivities[index] = e.target.value;
+                                        setActivities(newActivities);
+                                    }} />
+                                    <button className="action-button" onClick={() => removeActivity(index)}>Eliminar</button>
+                                </div>
+                            ))}
+                            <button type="button" onClick={addActivity}>Agregar actividad</button>
+                        </div>
 
-                        <label for="username">Requirió Repuestos:</label>
+                        <label for="RepReq">Requirió Repuestos:</label>
 
-                        <select onChange={(e) => setRequireSpareParts(e.target.value === 'sí')}>
+                        <select name='RepReq' onChange={(e) => setRequireSpareParts(e.target.value === 'sí')}>
                             <option value="no">No</option>
                             <option value="sí">Sí</option>
                         </select>
