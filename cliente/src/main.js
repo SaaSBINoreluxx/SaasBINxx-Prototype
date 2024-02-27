@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-
-
 function MainPage() {
     const [result, SetResult] = useState("")
     return (
@@ -30,6 +28,7 @@ function MainPage() {
                     const data = await res.json();
                     console.log(data);
                     SetResult(data)
+                    console.log(result)
                 }}>Gestionar</button>
             </div>
         </div>

@@ -7,12 +7,30 @@ function FormPage() {
     const tools = ['Destornillador estrella', 'Llave universal 11', 'Llave universal 13', 'Llave universal ajustable'];
     const materials = ['Manguera corrugada', 'Sensores de oxígeno', 'Precintos', 'Teflón', 'Tornillos', 'Paño absorbente', 'Paño de microfibra', 'Alcohol isopropílico', 'Silicona líquida'];
 
-    const [activities, setActivities] = useState(['']); // Estado para manejar dinámicamente las actividades
+    const [activities, setActivities] = useState([{ id: Date.now(), description: '', ordinal: 1 }]); // Estado para manejar dinámicamente las actividades
     const [requireSpareParts, setRequireSpareParts] = useState(false); // Estado para manejar si se requieren repuestos
     const [spareParts, setSpareParts] = useState(['']); // Estado para manejar dinámicamente los repuestos
+    
 
-    const addActivity = () => setActivities([...activities, '']);
-    const removeActivity = (index) => setActivities(activities.filter((_, idx) => idx !== index));
+    const addActivity = () => {
+        setActivities((prevActivities) => [
+            ...prevActivities,
+            { id: Date.now(), description: '', ordinal: prevActivities.length + 1 },
+        ]);
+    }
+
+    const removeActivity = (id, removedOrdinal) => {
+        setActivities((prevActivities) =>
+            prevActivities
+                .filter((activity) => activity.id !== id)
+                .map((activity) =>
+                    activity.ordinal > removedOrdinal
+                        ? { ...activity, ordinal: activity.ordinal - 1 }
+                        : activity
+                )
+        );
+    };
+
     const addSparePart = () => setSpareParts([...spareParts, '']);
     const removeSparePart = (index) => setSpareParts(spareParts.filter((_, idx) => idx !== index));
 
@@ -21,6 +39,8 @@ function FormPage() {
         const now = new Date();
         return now.toTimeString().split(' ')[0].substring(0, 5);
     };
+
+    console.log(activities)
 
     return (
         <div className="form-page">
@@ -74,7 +94,7 @@ function FormPage() {
                     <fieldset className="fieldset">
                         <fieldset className="sub-fieldset-container">
                             <div className='sub-fielset'>
-                                <label for="username">Hora y fecha:</label>
+                                <label htmlFor="horaInicio">Hora y fecha:</label>
                                 <input type="date" placeholder="Fecha" />
                                 <input type="text" id="horaInicio" placeholder="Hora de inicio de procedimiento" />
                             </div>
@@ -83,44 +103,44 @@ function FormPage() {
 
                         <legend>Datos de servicio</legend>
                         <div>
-                            <label for="Entidad">Entidad:</label>
-                            <input type="text" name="Entidad" placeholder="Entidad que recibe el servicio" />
+                            <label htmlFor="Entidad">Entidad:</label>
+                            <input type="text" id="Entidad" placeholder="Entidad que recibe el servicio" />
                         </div>
                         <div>
-                            <label for="Area">Area:</label>
-                            <input type="text" name="Area" placeholder="Área" />
+                            <label htmlFor="Area">Area:</label>
+                            <input type="text" id="Area" placeholder="Área" />
                         </div>
                         <div>
-                            <label for="Ubicacion">Ubicación:</label>
-                            <input type="text" name="Ubicacion" placeholder="Ubicación" />
+                            <label htmlFor="Ubicacion">Ubicación:</label>
+                            <input type="text" id="Ubicacion" placeholder="Ubicación" />
                         </div>
                     </fieldset>
 
                     <fieldset className="fieldset">
                         <legend>Datos del equipo</legend>
                         <div>
-                            <label for="denominacionEQ">Descripción:</label>
-                            <input type="text" name="denominacionEQ" placeholder="Denominación del equipo" />
+                            <label htmlFor="denominacionEQ">Descripción:</label>
+                            <input type="text" id="denominacionEQ" placeholder="Denominación del equipo" />
                         </div>
                         <div>
-                            <label for="Marca">Marca:</label>
-                            <input type="text" name="Marca" placeholder="Marca" />
+                            <label htmlFor="Marca">Marca:</label>
+                            <input type="text" id="Marca" placeholder="Marca" />
                         </div>
                         <div>
-                            <label for="Modelo">Modelo:</label>
-                            <input type="text" name="Modelo" placeholder="Modelo" />
+                            <label htmlFor="Modelo">Modelo:</label>
+                            <input type="text" id="Modelo" placeholder="Modelo" />
                         </div>
                         <div>
-                            <label for="Serie">Serie:</label>
-                            <input type="text" name="Serie" placeholder="Serie" />
+                            <label htmlFor="Serie">Serie:</label>
+                            <input type="text" id="Serie" placeholder="Serie" />
                         </div>
                         <div>
-                            <label for="CodPat">Código patrimonial:</label>
-                            <input type="text" name="CodPat" placeholder="Código patrimonial" />
+                            <label htmlFor="CodPat">Código patrimonial:</label>
+                            <input type="text" id="CodPat" placeholder="Código patrimonial" />
                         </div>
                         <div>
-                            <label for="EstadoIni">Estado Inicial:</label>
-                            <select name="EstadoIni" placeholder="Estado inicial">
+                            <label htmlFor="EstadoIni">Estado Inicial:</label>
+                            <select title='Estado Inicial' id="EstadoIni" placeholder="Estado inicial">
                                 <option value="Operativo">Operativo</option>
                                 <option value="Inoperativo">Inoperativo</option>
                                 <option value="Parcialmente operativo">Parcialmente operativo</option>
@@ -131,23 +151,36 @@ function FormPage() {
                     <fieldset className="fieldset">
                         <legend>Datos del procedimiento</legend>
                         <div className='dynamic-field-container'>
-                            {activities.map((activity, index) => (
-                                <div key={index} className="dynamic-field">
-                                    <label for="Actividad"> Actividad {index + 1}:  </label>
-                                    <input name="Actividad" type="text" placeholder="Descripción de la actividad ejecutada" value={activity} onChange={(e) => {
-                                        const newActivities = [...activities];
-                                        newActivities[index] = e.target.value;
-                                        setActivities(newActivities);
-                                    }} />
-                                    <button className="action-button" onClick={() => removeActivity(index)}><RiDeleteBin6Line /></button>
+                            {activities.map((activity) => (
+                                <div key={activity.id} className="dynamic-field">
+                                    <label htmlFor={'Actividad' + activity.id}> Actividad {activity.ordinal}: </label>
+                                    <input
+                                        id={'Actividad' + activity.id}
+                                        type="text"
+                                        placeholder="Descripción de la actividad ejecutada"
+                                        value={activity.description}
+                                        onChange={(e) => {
+                                            const newActivities = [...activities];
+                                            const index = activities.findIndex(a => a.id === activity.id);
+                                            newActivities[index] = { ...activity, description: e.target.value };
+                                            setActivities(newActivities);
+                                        }}
+                                    />
+                                    <button
+                                        title="deleteIcon"
+                                        className="action-button"
+                                        onClick={() => removeActivity(activity.id, activity.ordinal)}
+                                    >
+                                        <RiDeleteBin6Line />
+                                    </button>
                                 </div>
                             ))}
                             <button type="button" onClick={addActivity}>Agregar actividad</button>
                         </div>
 
-                        <label for="RepReq">Requirió Repuestos:</label>
+                        <label htmlFor="RepReq">Requirió Repuestos:</label>
 
-                        <select name='RepReq' onChange={(e) => setRequireSpareParts(e.target.value === 'sí')}>
+                        <select title='ReqRep' id='RepReq' onChange={(e) => setRequireSpareParts(e.target.value === 'sí')}>
                             <option value="no">No</option>
                             <option value="sí">Sí</option>
                         </select>
