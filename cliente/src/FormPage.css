@@ -122,6 +122,10 @@ label {
     display: block;
     justify-content: center;
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .dynamic-field{
@@ -174,4 +178,20 @@ label {
     .standard-button{
         width: 65%;
     }
+    .dynamic-field{
+        width: 100%;
+    }
+
+    .dynamic-field label{
+        font-size: small;
+        white-space: nowrap;
+    }
+    .dynamic-field input{
+        width: 80%;
+    }
+    .fieldset .dynamic-field .action-button{
+        margin-left: 5px;
+    }
+
+
   }
