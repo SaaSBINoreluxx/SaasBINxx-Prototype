@@ -1,5 +1,10 @@
 .form-page {
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .form-container {
@@ -8,7 +13,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
     padding: 20px; /* Espacio interior */
     width: 80%; /* O el ancho que prefieras */
-    margin: 20px auto; /* Centra el contenedor de la lista en la página y añade espacio arriba y abajo */
+    margin: 20px 0px; 
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra los contenidos de la lista horizontalmente */
@@ -55,7 +60,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
     padding: 20px; /* Espacio interior */
     width: 80%; /* O el ancho que prefieras */
-    margin: 20px auto; /* Centra el contenedor de la lista en la página y añade espacio arriba y abajo */
+    margin: 20px 0px; /* Centra el contenedor de la lista en la página y añade espacio arriba y abajo */
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra los contenidos de la lista horizontalmente */
@@ -96,9 +101,13 @@ label {
     align-items: center; /* Centra los contenidos de la lista horizontalmente */
 }
 
-.sub-fieldset{
+.sub-fieldset-container{
     width: 95%;
     min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .field-element{
@@ -125,18 +134,41 @@ label {
 
 .fieldset .dynamic-field .action-button{
     padding: 10px 10px;
+    margin-left: 10px;
     cursor: pointer;
     background-color: #800080;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 100%;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    width: 20%;
+    height: 36px;
+    width: 36px;
 }
 
 .dynamic-field input{
     width: 60%;
     margin: 0%;
+    margin-left: 10px;
 }
 
+.sub-fieldset input{
+    margin-bottom: 0px;
+    display: inline;
+}
+.form-container .sub-fieldset-container .standard-button{
+    margin-top: 0px;
+}
+
+
+@media (max-width: 700px) {
+    .form-container {
+        width: 95%;
+    }
+    .inventory-container{
+        width: 95%;
+    }
+    .form-page{
+        width: 95%;
+    }
+  }

@@ -1,13 +1,12 @@
 .App {
   text-align: center;
   height: 100%;
-  
+  justify-content: center;
   min-height: 100vh;
   display: flex;
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #5d2375; /* Fondo morado para la aplicación */
-  /*justify-content: center;*/
   align-items: center;
   flex-direction: column;
 }
@@ -86,7 +85,8 @@
   font-size: 16px;
   transition: background-color 0.3s ease;
   margin-top: 20px;
-  width: 80%;
+  width: 20%;
+  display: block;
 }
 
 .standard-button:hover {

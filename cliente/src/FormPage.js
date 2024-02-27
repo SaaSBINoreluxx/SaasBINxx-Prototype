@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { RiDeleteBin6Line } from "react-icons/ri";
 import './FormPage.css';
 
 function FormPage() {
@@ -71,10 +72,12 @@ function FormPage() {
                 <h2>Orden de Trabajo de Mantenimiento</h2>
                 <form>
                     <fieldset className="fieldset">
-                        <fieldset className="sub-fieldset">
-                            <label for="username">Hora y fecha:</label>
-                            <input type="date" placeholder="Fecha" />
-                            <input type="text" id="horaInicio" placeholder="Hora de inicio de procedimiento" />
+                        <fieldset className="sub-fieldset-container">
+                            <div className='sub-fielset'>
+                                <label for="username">Hora y fecha:</label>
+                                <input type="date" placeholder="Fecha" />
+                                <input type="text" id="horaInicio" placeholder="Hora de inicio de procedimiento" />
+                            </div>
                             <button className='standard-button' type="button" onClick={(e) => { e.preventDefault(); e.target.previousElementSibling.value = getCurrentTime(); }}>Obtener hora</button>
                         </fieldset>
 
@@ -136,7 +139,7 @@ function FormPage() {
                                         newActivities[index] = e.target.value;
                                         setActivities(newActivities);
                                     }} />
-                                    <button className="action-button" onClick={() => removeActivity(index)}>Eliminar</button>
+                                    <button className="action-button" onClick={() => removeActivity(index)}><RiDeleteBin6Line /></button>
                                 </div>
                             ))}
                             <button type="button" onClick={addActivity}>Agregar actividad</button>
