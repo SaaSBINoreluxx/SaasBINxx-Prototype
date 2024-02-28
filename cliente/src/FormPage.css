@@ -101,6 +101,7 @@ label {
     align-items: center; /* Centra los contenidos de la lista horizontalmente */
 }
 
+
 .sub-fieldset-container{
     width: 95%;
     min-width: 180px;
@@ -162,6 +163,16 @@ label {
 }
 .form-container .sub-fieldset-container .standard-button{
     margin-top: 0px;
+}
+
+.sub-fieldset-container .sub-fieldset input{
+    margin-bottom: 20px;
+    display: inline;
+}
+
+.fieldset textarea{
+    width: 80%;
+    margin-top: 20px;
 }
 
 

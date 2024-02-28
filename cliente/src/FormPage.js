@@ -8,7 +8,7 @@ function FormPage() {
     const materials = ['Manguera corrugada', 'Sensores de oxígeno', 'Precintos', 'Teflón', 'Tornillos', 'Paño absorbente', 'Paño de microfibra', 'Alcohol isopropílico', 'Silicona líquida'];
 
     const [activities, setActivities] = useState([{ id: Date.now(), description: '', ordinal: 1 }]); // Estado para manejar dinámicamente las actividades
-    const [requireSpareParts, setRequireSpareParts] = useState(true); // Estado para manejar si se requieren repuestos
+    const [requireSpareParts, setRequireSpareParts] = useState(false); // Estado para manejar si se requieren repuestos
     const [spareParts, setSpareParts] = useState([{ id: Date.now(), description: '', ordinal: 1 }]); // Estado para manejar dinámicamente los repuestos
 
 
@@ -32,24 +32,24 @@ function FormPage() {
     };
 
     const addSparePart = () => {
-        setSpareParts((preSpareParts)=>[
+        setSpareParts((preSpareParts) => [
             ...preSpareParts,
-            {id: Date.now(),description: '',ordinal: preSpareParts.length + 1},
+            { id: Date.now(), description: '', ordinal: preSpareParts.length + 1 },
         ]);
     }
 
     const removeSparePart = (id, removedOrdinal) => {
         setSpareParts((preSpareParts) =>
-        preSpareParts
-            .filter((sparePart) => sparePart.id !== id)
-            .map((sparePart) =>
-                sparePart.ordinal > removedOrdinal
-                    ? { ...sparePart, ordinal: sparePart.ordinal - 1 }
-                    : sparePart
-            )
-    );
+            preSpareParts
+                .filter((sparePart) => sparePart.id !== id)
+                .map((sparePart) =>
+                    sparePart.ordinal > removedOrdinal
+                        ? { ...sparePart, ordinal: sparePart.ordinal - 1 }
+                        : sparePart
+                )
+        );
     }
-    
+
 
     // Función para obtener la hora actual en formato HH:MM
     const getCurrentTime = () => {
@@ -202,7 +202,7 @@ function FormPage() {
                         </select>
 
                         <div className='dynamic-field-container' >
-                            {spareParts.map((sparePart) => (
+                            {requireSpareParts && spareParts.map((sparePart) => (
                                 <div key={sparePart.id} className='dynamic-field'>
                                     <label htmlFor={'Repuesto' + sparePart.id} >Respuesto {sparePart.ordinal}</label>
                                     <input
@@ -227,11 +227,30 @@ function FormPage() {
                                 </div>
                             ))}
 
-                            <button type="button" onClick={addSparePart}>Agregar Respuesto</button>
+                            {requireSpareParts && <button type="button" onClick={addSparePart}>Agregar Respuesto</button>}
+
+
                         </div>
 
-                        <input type="text" placeholder="Hora de finalización de procedimiento" readOnly />
-                        <button className='standard-button' type="button" onClick={(e) => { e.preventDefault(); e.target.previousElementSibling.value = getCurrentTime(); }}>Obtener hora</button>
+                        <div className='sub-fieldset-container'>
+                            <div className='sub-fieldset'>
+                                <label htmlFor='HoraFin' >Hora de finalización: </label>
+                                <input id='HoraFin' type="text" placeholder="Hora de finalización de procedimiento" readOnly />
+                            </div>
+
+                            <button 
+                            className='standard-button' 
+                            type="button" 
+                            onClick={(e) => { 
+                                e.preventDefault(); 
+                                e.target.previousElementSibling.value = getCurrentTime(); 
+                                }}
+                            >Obtener hora</button>
+                        </div>
+
+
+
+
                         <textarea placeholder="Observaciones"></textarea>
                     </fieldset>
 
