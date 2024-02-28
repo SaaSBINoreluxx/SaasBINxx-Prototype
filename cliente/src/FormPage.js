@@ -8,9 +8,9 @@ function FormPage() {
     const materials = ['Manguera corrugada', 'Sensores de oxígeno', 'Precintos', 'Teflón', 'Tornillos', 'Paño absorbente', 'Paño de microfibra', 'Alcohol isopropílico', 'Silicona líquida'];
 
     const [activities, setActivities] = useState([{ id: Date.now(), description: '', ordinal: 1 }]); // Estado para manejar dinámicamente las actividades
-    const [requireSpareParts, setRequireSpareParts] = useState(false); // Estado para manejar si se requieren repuestos
-    const [spareParts, setSpareParts] = useState(['']); // Estado para manejar dinámicamente los repuestos
-    
+    const [requireSpareParts, setRequireSpareParts] = useState(true); // Estado para manejar si se requieren repuestos
+    const [spareParts, setSpareParts] = useState([{ id: Date.now(), description: '', ordinal: 1 }]); // Estado para manejar dinámicamente los repuestos
+
 
     const addActivity = () => {
         setActivities((prevActivities) => [
@@ -31,8 +31,25 @@ function FormPage() {
         );
     };
 
-    const addSparePart = () => setSpareParts([...spareParts, '']);
-    const removeSparePart = (index) => setSpareParts(spareParts.filter((_, idx) => idx !== index));
+    const addSparePart = () => {
+        setSpareParts((preSpareParts)=>[
+            ...preSpareParts,
+            {id: Date.now(),description: '',ordinal: preSpareParts.length + 1},
+        ]);
+    }
+
+    const removeSparePart = (id, removedOrdinal) => {
+        setSpareParts((preSpareParts) =>
+        preSpareParts
+            .filter((sparePart) => sparePart.id !== id)
+            .map((sparePart) =>
+                sparePart.ordinal > removedOrdinal
+                    ? { ...sparePart, ordinal: sparePart.ordinal - 1 }
+                    : sparePart
+            )
+    );
+    }
+    
 
     // Función para obtener la hora actual en formato HH:MM
     const getCurrentTime = () => {
@@ -179,23 +196,39 @@ function FormPage() {
                         </div>
 
                         <label htmlFor="RepReq">Requirió Repuestos:</label>
-
                         <select title='ReqRep' id='RepReq' onChange={(e) => setRequireSpareParts(e.target.value === 'sí')}>
                             <option value="no">No</option>
                             <option value="sí">Sí</option>
                         </select>
 
-                        {requireSpareParts && spareParts.map((part, index) => (
-                            <div key={index} className="dynamic-field">
-                                <input type="text" placeholder="Detalle de repuestos" value={part} onChange={(e) => {
-                                    const newSpareParts = [...spareParts];
-                                    newSpareParts[index] = e.target.value;
-                                    setSpareParts(newSpareParts);
-                                }} />
-                                <button type="button" onClick={() => removeSparePart(index)}>Eliminar</button>
-                            </div>
-                        ))}
-                        {requireSpareParts && <button type="button" onClick={addSparePart}>Agregar repuesto</button>}
+                        <div className='dynamic-field-container' >
+                            {spareParts.map((sparePart) => (
+                                <div key={sparePart.id} className='dynamic-field'>
+                                    <label htmlFor={'Repuesto' + sparePart.id} >Respuesto {sparePart.ordinal}</label>
+                                    <input
+                                        id={'Repuesto' + sparePart.id}
+                                        type='text'
+                                        placeholder='Descripción del repuesto'
+                                        value={sparePart.description}
+                                        onChange={(e) => {
+                                            const newSpareParts = [...spareParts];
+                                            const index = spareParts.findIndex(a => a.id === sparePart.id);
+                                            newSpareParts[index] = { ...sparePart, description: e.target.value };
+                                            setSpareParts(newSpareParts);
+                                        }}
+                                    />
+                                    <button
+                                        title="deleteIcon"
+                                        className="action-button"
+                                        onClick={() => removeSparePart(sparePart.id, sparePart.ordinal)}
+                                    >
+                                        <RiDeleteBin6Line />
+                                    </button>
+                                </div>
+                            ))}
+
+                            <button type="button" onClick={addSparePart}>Agregar Respuesto</button>
+                        </div>
 
                         <input type="text" placeholder="Hora de finalización de procedimiento" readOnly />
                         <button className='standard-button' type="button" onClick={(e) => { e.preventDefault(); e.target.previousElementSibling.value = getCurrentTime(); }}>Obtener hora</button>

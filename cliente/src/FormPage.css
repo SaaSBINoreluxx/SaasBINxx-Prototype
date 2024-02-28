@@ -181,7 +181,6 @@ label {
     .dynamic-field{
         width: 100%;
     }
-
     .dynamic-field label{
         font-size: small;
         white-space: nowrap;
@@ -192,6 +191,4 @@ label {
     .fieldset .dynamic-field .action-button{
         margin-left: 5px;
     }
-
-
   }
