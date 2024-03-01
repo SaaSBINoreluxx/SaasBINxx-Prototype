@@ -26,7 +26,11 @@ function WarehouseOperator() {
             : [...selectedItems[card], item];
         setSelectedItems({ ...selectedItems, [card]: updatedSelection });
 
-        
+        // Inicializa la cantidad para el nuevo ítem si no existe.
+        if (!selectedItems[card].includes(item) && !itemQuantities[card][item]) {
+            const updatedQuantities = { ...itemQuantities[card], [item]: 1 };
+            setItemQuantities({ ...itemQuantities, [card]: updatedQuantities });
+        }
     };
 
     const handleQuantityChange = (card, item, quantity) => {
@@ -75,7 +79,7 @@ function WarehouseOperator() {
                                                         <input
                                                             type="number"
                                                             className="quantity-input"
-                                                            value={itemQuantities[id][item] || 1}
+                                                            value={itemQuantities[id][item]}
                                                             onChange={(e) => handleQuantityChange(id, item, parseInt(e.target.value))}
                                                             min="1"
                                                         />
