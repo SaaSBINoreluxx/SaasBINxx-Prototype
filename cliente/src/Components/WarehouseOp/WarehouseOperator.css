@@ -76,6 +76,18 @@
 
 }
 
+.form-container .card-inReg{
+    border: solid;
+    background-color: white;
+    border-color: #800080;
+    border-width: 5px;
+    margin: 20px 20px;
+    min-width: 200px;
+    padding: 20px;
+    border-radius: 15px;
+
+}
+
 .card-btn{
     width: 100%;
     display: flex;
@@ -84,15 +96,35 @@
     justify-content: center;
 }
 
+.form-container .card-btn-inReg{
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #800080;
+}
+
 .card-btn-icon{
     min-height: 120px;
     min-width: 120px;
     margin-bottom: 30px;
+    color: white;
+}
+
+.card-btn-icon-inReg{
+    min-height: 120px;
+    min-width: 120px;
+    margin-bottom: 30px;
+    color: #800080;
 }
 
 .card ul{
     text-align: start;
 }
+
+
 
 
 

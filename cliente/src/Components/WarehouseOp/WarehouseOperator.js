@@ -114,9 +114,9 @@ function WarehouseOperator() {
                     <div className='cards-container' >
                         {visiblePopup && <div className="overlay" onClick={() => setVisiblePopup(null)}></div>}
                         {cardInfo.map(({ id, text, icon: Icon }) => (
-                            <div className='card' key={id}>
-                                <button type='button' className='card-btn' onClick={() => handleTogglePopup(id)}>
-                                    <Icon className='card-btn-icon' /> {text}
+                            <div className='card-inReg' key={id}>
+                                <button type='button' className='card-btn-inReg' onClick={() => handleTogglePopup(id)}>
+                                    <Icon className='card-btn-icon-inReg' /> {text}
                                 </button>
                                 {visiblePopup === id && (
                                     <div className="popup">
