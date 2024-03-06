@@ -72,7 +72,7 @@ function FormPage() {
                 </form>
             </div>
             <div className="inventory-container">
-                <h2>Lista de Equipos e Insumos</h2>
+                <h2>Lista de Equipos e Insumos: INGRESO</h2>
                 <form>
                     <fieldset className='fieldset'>
                         <legend>Equipos electrónicos</legend>
@@ -238,12 +238,12 @@ function FormPage() {
                                 <input id='HoraFin' type="text" placeholder="Hora de finalización de procedimiento" readOnly />
                             </div>
 
-                            <button 
-                            className='standard-button' 
-                            type="button" 
-                            onClick={(e) => { 
-                                e.preventDefault(); 
-                                e.target.previousElementSibling.value = getCurrentTime(); 
+                            <button
+                                className='standard-button'
+                                type="button"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.target.previousElementSibling.value = getCurrentTime();
                                 }}
                             >Obtener hora</button>
                         </div>
@@ -255,6 +255,41 @@ function FormPage() {
                     </fieldset>
 
                     <button className='standard-button' type="submit">Enviar Orden de Trabajo</button>
+                </form>
+            </div>
+
+            <div className="inventory-container">
+                <h2>Lista de Equipos e Insumos SALIDA</h2>
+                <form>
+                    <fieldset className='fieldset'>
+                        <legend>Equipos electrónicos</legend>
+                        {electronicEquipment.map((item, index) => (
+                            <div key={index} className='field-element'>
+                                <input type="checkbox" id={`electronic-${index}`} name={item} />
+                                <label htmlFor={`electronic-${index}`}>{item}</label>
+                            </div>
+                        ))}
+                    </fieldset>
+                    <fieldset className='fieldset'>
+                        <legend>Herramientas</legend>
+                        {tools.map((item, index) => (
+                            <div key={index} className='field-element'>
+                                <input type="checkbox" id={`tool-${index}`} name={item} />
+                                <label htmlFor={`tool-${index}`}>{item}</label>
+                            </div>
+                        ))}
+                    </fieldset>
+                    <fieldset className='fieldset'>
+                        <legend>Materiales</legend>
+                        {materials.map((item, index) => (
+                            <div key={index} className='field-element'>
+                                <input type="checkbox" id={`material-${index}`} name={item} />
+                                <label htmlFor={`material-${index}`}>{item}</label>
+                            </div>
+                        ))}
+                    </fieldset>
+                    <textarea className='field-element' placeholder="Observaciones"></textarea>
+                    <button className='standard-button' type="submit">Enviar lista</button>
                 </form>
             </div>
         </div>

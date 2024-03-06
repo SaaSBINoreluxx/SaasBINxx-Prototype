@@ -8,6 +8,7 @@ function WarehouseOperator() {
     const [selectedItems, setSelectedItems] = useState({ card1: [], card2: [], card3: [] });
     const [itemQuantities, setItemQuantities] = useState({ card1: {}, card2: {}, card3: {} });
     const [visiblePopup, setVisiblePopup] = useState(null); // Cambio aquí para controlar cuál popup está visible
+    const [returnPopupVisible, setReturnPopupVisible] = useState(false);
 
     const cardInfo = [
         { id: 'card1', text: 'Equipos', icon: BsDeviceSsdFill },
@@ -18,7 +19,18 @@ function WarehouseOperator() {
     const items = [
         Array.from({ length: 20 }, (_, i) => `Item 1-${i + 1}`),
         Array.from({ length: 20 }, (_, i) => `Item 2-${i + 1}`),
-        Array.from({ length: 20 }, (_, i) => `Item 3-${i + 1}`)]
+        Array.from({ length: 20 }, (_, i) => `Item 3-${i + 1}`)];
+
+    const returnItems = {
+        equipos: Array.from({ length: 5 }, (_, i) => ({ id: `equipo-${i + 1}`, name: `Equipo ${i + 1}`, quantity: Math.floor(Math.random() * 10) + 1 })),
+        herramientas: Array.from({ length: 5 }, (_, i) => ({ id: `herramienta-${i + 1}`, name: `Herramienta ${i + 1}`, quantity: Math.floor(Math.random() * 10) + 1 })),
+        materiales: Array.from({ length: 5 }, (_, i) => ({ id: `material-${i + 1}`, name: `Material ${i + 1}`, quantity: Math.floor(Math.random() * 10) + 1 })),
+    };
+
+
+    const toggleReturnPopup = () => {
+        setReturnPopupVisible(!returnPopupVisible);
+    };
 
     const handleSelectItem = (card, item) => {
         const updatedSelection = selectedItems[card].includes(item)
@@ -47,121 +59,141 @@ function WarehouseOperator() {
         <div className='container' >
 
             <div className='warehouse-forms-container'>
-            <div className='form-container' >
-                <h1>Registro de asignación</h1>
+                <div className='form-container' >
+                    <h1>Registro de asignación</h1>
 
-                <form id='assetsOut' >
-                    <input className='field-element' type="text" placeholder="Nombre" />
-                    <input className='field-element' type="text" placeholder="Apellido" />
-                    <input className='field-element' type="text" placeholder="ID" />
-                    <textarea className='field-element' placeholder="Mensaje"></textarea>
+                    <form id='assetsOut' >
+                        <input className='field-element' type="text" placeholder="Nombre" />
+                        <input className='field-element' type="text" placeholder="Apellido" />
+                        <input className='field-element' type="text" placeholder="ID" />
+                        <textarea className='field-element' placeholder="Mensaje"></textarea>
 
 
-                    <div className='cards-container' >
-                        {visiblePopup && <div className="overlay" onClick={() => setVisiblePopup(null)}></div>}
-                        {cardInfo.map(({ id, text, icon: Icon }) => (
-                            <div className='card' key={id}>
-                                <button type='button' className='card-btn' onClick={() => handleTogglePopup(id)}>
-                                    <Icon className='card-btn-icon' /> {text}
-                                </button>
-                                {visiblePopup === id && (
-                                    <div className="popup">
-                                        <div className="popup-content">
-                                            {items[parseInt(id.substring(4)) - 1].map((item) => (
-                                                <div key={item} className="checkbox-item">
-                                                    <input
-                                                        type="checkbox"
-                                                        id={`${id}-${item}`}
-                                                        checked={selectedItems[id].includes(item)}
-                                                        onChange={() => handleSelectItem(id, item)}
-                                                    />
-                                                    <label htmlFor={`${id}-${item}`}>{item}</label>
-                                                    {selectedItems[id].includes(item) && (
+                        <div className='cards-container' >
+                            {visiblePopup && <div className="overlay" onClick={() => setVisiblePopup(null)}></div>}
+                            {cardInfo.map(({ id, text, icon: Icon }) => (
+                                <div className='card' key={id}>
+                                    <button type='button' className='card-btn' onClick={() => handleTogglePopup(id)}>
+                                        <Icon className='card-btn-icon' /> {text}
+                                    </button>
+                                    {visiblePopup === id && (
+                                        <div className="popup">
+                                            <div className="popup-content">
+                                                {items[parseInt(id.substring(4)) - 1].map((item) => (
+                                                    <div key={item} className="checkbox-item">
                                                         <input
-                                                            type="number"
-                                                            className="quantity-input"
-                                                            value={itemQuantities[id][item]}
-                                                            onChange={(e) => handleQuantityChange(id, item, parseInt(e.target.value))}
-                                                            min="1"
+                                                            type="checkbox"
+                                                            id={`${id}-${item}`}
+                                                            checked={selectedItems[id].includes(item)}
+                                                            onChange={() => handleSelectItem(id, item)}
                                                         />
-                                                    )}
-                                                </div>
-                                            ))}
+                                                        <label htmlFor={`${id}-${item}`}>{item}</label>
+                                                        {selectedItems[id].includes(item) && (
+                                                            <input
+                                                                type="number"
+                                                                className="quantity-input"
+                                                                value={itemQuantities[id][item]}
+                                                                onChange={(e) => handleQuantityChange(id, item, parseInt(e.target.value))}
+                                                                min="1"
+                                                            />
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <button className="popup-ok-button" onClick={() => handleTogglePopup(id)}>OK</button>
                                         </div>
-                                        <button className="popup-ok-button" onClick={() => handleTogglePopup(id)}>OK</button>
-                                    </div>
-                                )}
-                                <ul>
-                                    {selectedItems[id].map((item, idx) => (
-                                        <li key={idx}>{'(' + (itemQuantities[id][item] || 1) + ') '}{item}</li>
-                                    ))}
-                                </ul>
+                                    )}
+                                    <ul>
+                                        {selectedItems[id].map((item, idx) => (
+                                            <li key={idx}>{'(' + (itemQuantities[id][item] || 1) + ') '}{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+
+
+                        <button className='standard-button' type="submit">Registrar Salida</button>
+                    </form>
+                    <button className='standard-button' type="button" onClick={toggleReturnPopup} >verificar devolución</button>
+
+                    {returnPopupVisible && (
+                        <div className="popup">
+                            <div className="popup-content">
+                                {Object.entries(returnItems).map(([category, items]) => (
+                                    <fieldset key={category} className='fieldset'>
+                                        <legend>{category.charAt(0).toUpperCase() + category.slice(1)}</legend>
+                                        {items.map(item => (
+                                            <div key={item.id} className="checkbox-item">
+                                                <input type="checkbox" id={item.id} name={item.name} />
+                                                <label htmlFor={item.id}>{`${item.name} - Cantidad: ${item.quantity}`}</label>
+                                            </div>
+                                        ))}
+                                    </fieldset>
+                                ))}
                             </div>
-                        ))}
-                    </div>
+                            <button className="popup-ok-button" onClick={toggleReturnPopup}>Cerrar</button>
+                        </div>
+                    )}
 
+                </div>
 
-                    <button className='standard-button' type="submit">Registrar Salida</button>
-                </form>
-                <button className='standard-button' type="button">verificar devolución</button>
-            </div>
+                <div className='form-container' >
+                    <h1>Registro de ingreso</h1>
 
-            <div className='form-container' >
-                <h1>Registro de ingreso</h1>
+                    <form id='assetsOut' >
 
-                <form id='assetsOut' >
-
-                    <div className='cards-container' >
-                        {visiblePopup && <div className="overlay" onClick={() => setVisiblePopup(null)}></div>}
-                        {cardInfo.map(({ id, text, icon: Icon }) => (
-                            <div className='card-inReg' key={id}>
-                                <button type='button' className='card-btn-inReg' onClick={() => handleTogglePopup(id)}>
-                                    <Icon className='card-btn-icon-inReg' /> {text}
-                                </button>
-                                {visiblePopup === id && (
-                                    <div className="popup">
-                                        <div className="popup-content">
-                                            {items[parseInt(id.substring(4)) - 1].map((item) => (
-                                                <div key={item} className="checkbox-item">
-                                                    <input
-                                                        type="checkbox"
-                                                        id={`${id}-${item}`}
-                                                        checked={selectedItems[id].includes(item)}
-                                                        onChange={() => handleSelectItem(id, item)}
-                                                    />
-                                                    <label htmlFor={`${id}-${item}`}>{item}</label>
-                                                    {selectedItems[id].includes(item) && (
+                        <div className='cards-container' >
+                            {visiblePopup && <div className="overlay" onClick={() => setVisiblePopup(null)}></div>}
+                            {cardInfo.map(({ id, text, icon: Icon }) => (
+                                <div className='card-inReg' key={id}>
+                                    <button type='button' className='card-btn-inReg' onClick={() => handleTogglePopup(id)}>
+                                        <Icon className='card-btn-icon-inReg' /> {text}
+                                    </button>
+                                    {visiblePopup === id && (
+                                        <div className="popup">
+                                            <div className="popup-content">
+                                                {items[parseInt(id.substring(4)) - 1].map((item) => (
+                                                    <div key={item} className="checkbox-item">
                                                         <input
-                                                            type="number"
-                                                            className="quantity-input"
-                                                            value={itemQuantities[id][item]}
-                                                            onChange={(e) => handleQuantityChange(id, item, parseInt(e.target.value))}
-                                                            min="1"
+                                                            type="checkbox"
+                                                            id={`${id}-${item}`}
+                                                            checked={selectedItems[id].includes(item)}
+                                                            onChange={() => handleSelectItem(id, item)}
                                                         />
-                                                    )}
-                                                </div>
-                                            ))}
+                                                        <label htmlFor={`${id}-${item}`}>{item}</label>
+                                                        {selectedItems[id].includes(item) && (
+                                                            <input
+                                                                type="number"
+                                                                className="quantity-input"
+                                                                value={itemQuantities[id][item]}
+                                                                onChange={(e) => handleQuantityChange(id, item, parseInt(e.target.value))}
+                                                                min="1"
+                                                            />
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <button className="popup-ok-button" onClick={() => handleTogglePopup(id)}>OK</button>
                                         </div>
-                                        <button className="popup-ok-button" onClick={() => handleTogglePopup(id)}>OK</button>
-                                    </div>
-                                )}
-                                <ul>
-                                    {selectedItems[id].map((item, idx) => (
-                                        <li key={idx}>{'(' + (itemQuantities[id][item] || 1) + ') '}{item}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
+                                    )}
+                                    <ul>
+                                        {selectedItems[id].map((item, idx) => (
+                                            <li key={idx}>{'(' + (itemQuantities[id][item] || 1) + ') '}{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
 
 
-                    <button className='standard-button' type="submit">Registrar Salida</button>
-                </form>
+                        <button className='standard-button' type="submit">Registrar Salida</button>
+                    </form>
 
-            </div>
+                </div>
             </div>
 
-            
+
 
         </div>
     );

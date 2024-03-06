@@ -8,8 +8,9 @@
     z-index: 2;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    max-height: 400px; /* Ajusta a la altura deseada */
+    width: 70%;
+    height: 90%;
+    max-height: 600px; /* Ajusta a la altura deseada */
     display: flex;
     flex-direction: column;
 }
@@ -85,6 +86,10 @@
     min-width: 200px;
     padding: 20px;
     border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 
 }
 
@@ -134,5 +139,6 @@
     }
     .popup{
         width: 80%;
+        height: 80%;
     }
 }
