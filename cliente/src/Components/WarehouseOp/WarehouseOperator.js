@@ -124,8 +124,10 @@ function WarehouseOperator() {
                             <div className="overlay" onClick={toggleReturnPopup}></div>
                             <div className="popup">
                                 <div className="popup-content">
+                                    <input className='field-element' type="text" placeholder="ID" />
                                     {Object.entries(returnItems).map(([category, items]) => (
                                         <fieldset key={category} className='fieldset'>
+
                                             <legend>{category.charAt(0).toUpperCase() + category.slice(1)}</legend>
                                             {items.map(item => (
                                                 <div key={item.id} className="checkbox-item">
