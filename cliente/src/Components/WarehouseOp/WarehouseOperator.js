@@ -30,6 +30,7 @@ function WarehouseOperator() {
 
     const toggleReturnPopup = () => {
         setReturnPopupVisible(!returnPopupVisible);
+
     };
 
     const handleSelectItem = (card, item) => {
@@ -117,23 +118,28 @@ function WarehouseOperator() {
                     </form>
                     <button className='standard-button' type="button" onClick={toggleReturnPopup} >verificar devolución</button>
 
+
                     {returnPopupVisible && (
-                        <div className="popup">
-                            <div className="popup-content">
-                                {Object.entries(returnItems).map(([category, items]) => (
-                                    <fieldset key={category} className='fieldset'>
-                                        <legend>{category.charAt(0).toUpperCase() + category.slice(1)}</legend>
-                                        {items.map(item => (
-                                            <div key={item.id} className="checkbox-item">
-                                                <input type="checkbox" id={item.id} name={item.name} />
-                                                <label htmlFor={item.id}>{`${item.name} - Cantidad: ${item.quantity}`}</label>
-                                            </div>
-                                        ))}
-                                    </fieldset>
-                                ))}
+                        <>
+                            <div className="overlay" onClick={toggleReturnPopup}></div>
+                            <div className="popup">
+                                <div className="popup-content">
+                                    {Object.entries(returnItems).map(([category, items]) => (
+                                        <fieldset key={category} className='fieldset'>
+                                            <legend>{category.charAt(0).toUpperCase() + category.slice(1)}</legend>
+                                            {items.map(item => (
+                                                <div key={item.id} className="checkbox-item">
+                                                    <input type="checkbox" id={item.id} name={item.name} />
+                                                    <label htmlFor={item.id}>{`${item.name} - Cantidad: ${item.quantity}`}</label>
+                                                </div>
+                                            ))}
+                                        </fieldset>
+                                    ))}
+                                </div>
+                                <button className="popup-ok-button" onClick={toggleReturnPopup}>Cerrar</button>
                             </div>
-                            <button className="popup-ok-button" onClick={toggleReturnPopup}>Cerrar</button>
-                        </div>
+                        </>
+
                     )}
 
                 </div>
