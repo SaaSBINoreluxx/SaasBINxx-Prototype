@@ -19,19 +19,15 @@ function MainPage() {
                     <p>Soy operador de almacén</p>
                     <Link to='/WOpform' className='Route-link'>
                         <button className='standard-button'>Ingresar datos</button>
-                    </Link>                    
+                    </Link>
                 </div>
             </div>
             <div className="right-split">
                 <img src="/gerente-de-proyecto.png" className='category-icon' alt="adm" />
                 <p>Soy Administrador</p>
-                <button className='standard-button' onClick={async () => {
-                    const res = await fetch('https://saasbinxx-prototype.onrender.com/users');
-                    const data = await res.json();
-                    console.log(data);
-                    SetResult(data)
-                    console.log(result)
-                }}>Gestionar</button>
+                <Link to='/AdmDash' className='Route-link'>
+                    <button className='standard-button'>Gestionar</button>
+                </Link>
             </div>
         </div>
     );
