@@ -24,7 +24,7 @@ function AdminDashboard() {
             <div className="admin-dashboard">
                 <h1>Panel de Administrador</h1>
                 {/* Gráfico Doughnut (usando PieChart) para el progreso de las tareas */}
-                <PieChart width={400} height={400}>
+                <PieChart width={300} height={300}>
                     <Pie
                         data={data}
                         cx={200}
@@ -46,8 +46,8 @@ function AdminDashboard() {
 
                 <h2>Consumo de Materiales por Operador</h2>
                 <BarChart
-                    width={500}
-                    height={300}
+                    width={300}
+                    height={200}
                     data={dataBarChart}
                     margin={{
                         top: 20, right: 30, left: 20, bottom: 5,
