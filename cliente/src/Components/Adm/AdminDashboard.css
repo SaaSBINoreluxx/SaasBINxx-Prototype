@@ -1,0 +1,39 @@
+.admin-dashboard{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+}
+
+.row{
+    display: flex;
+    gap: 30px; /* Espacio entre componentes */
+    width: 100%;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.chart-container {
+    flex: 1;
+    background-color: white;    /* Fondo blanco para las tarjetas */
+    border-radius: 15px;    /* Bordes redondeados para las tarjetas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);    /* Sombra sutil para profundidad */
+    width: 100%;    /* Ajusta el ancho de las tarjetas */
+    
+    min-height: 39vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Centra los contenidos de las tarjetas horizontalmente */
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column; /* Cambia la disposición de los componentes a vertical */
+    }
+}
+
+
+
