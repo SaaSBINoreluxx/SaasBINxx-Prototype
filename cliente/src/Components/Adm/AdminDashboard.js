@@ -31,8 +31,8 @@ function AdminDashboard() {
                                     data={data}
                                     cx="50%"
                                     cy="50%"
-                                    innerRadius="70%"
-                                    outerRadius="80%"
+                                    innerRadius="55%"
+                                    outerRadius="70%"
                                     fill="#8884d8"
                                     paddingAngle={4}
                                     dataKey="value"
@@ -57,9 +57,9 @@ function AdminDashboard() {
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
-                                <Bar dataKey="pv" stackId="a" fill="#8884d8" barSize={10}/>
-                                <Bar dataKey="uv" stackId="a" fill="#82ca9d" barSize={10}/>
-                                <Bar dataKey="amt" stackId="a" fill="#ffc658" barSize={10}/>
+                                <Bar dataKey="pv" stackId="a" fill="#8884d8" barSize={10} />
+                                <Bar dataKey="uv" stackId="a" fill="#82ca9d" barSize={10} />
+                                <Bar dataKey="amt" stackId="a" fill="#ffc658" barSize={10} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
@@ -67,7 +67,19 @@ function AdminDashboard() {
 
                 <div className='row'>
                     <div className='chart-container'>
-
+                        <h2>Progreso individual de tareas</h2>
+                        <ResponsiveContainer width="99%" height="100%" aspect={10 / 3}>
+                            <BarChart layout="vertical" data={dataBarChart} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis type="number" />
+                                <YAxis dataKey="name" type="category"/>
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="pv" stackId="a" fill="#8884d8" barSize={10} />
+                                <Bar dataKey="uv" stackId="a" fill="#82ca9d" barSize={10} />
+                                <Bar dataKey="amt" stackId="a" fill="#ffc658" barSize={10} />
+                            </BarChart>
+                        </ResponsiveContainer>
                     </div>
                 </div>
             </div>
