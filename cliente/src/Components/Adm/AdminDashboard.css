@@ -21,7 +21,7 @@
     border-radius: 15px;    /* Bordes redondeados para las tarjetas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);    /* Sombra sutil para profundidad */
     width: 100%;    /* Ajusta el ancho de las tarjetas */
-    
+    padding: 20px;
     min-height: 39vh;
     display: flex;
     flex-direction: column;
