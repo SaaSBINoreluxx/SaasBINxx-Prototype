@@ -1,6 +1,9 @@
 import React from 'react';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 import "./AdminDashboard.css"
+
 
 // Datos de ejemplo para el gráfico
 const data = [
@@ -16,6 +19,62 @@ const dataBarChart = [
     // Añade más datos según sea necesario
 ];
 
+const exportPDF = () => {
+    const input = document.getElementById('chart1');
+    html2canvas(input, {scale: 2,}).then((canvas) => { // scale:2 Aumenta la resolución de la imagen sin estop la imagen muestra fondo irregular
+        const imgData = canvas.toDataURL('image/png');
+
+        // Inicia un nuevo documento PDF en formato A4
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+        });
+
+        // Define márgenes y dimensiones útiles
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const pageMargin = 10; // Márgenes de 10 mm
+        const textMargin = 5; // Espacio adicional debajo del texto
+
+        // Posiciones iniciales
+        let yPosition = pageMargin;
+
+        // Añade un título y algunos párrafos de texto
+        pdf.setFontSize(16); // Tamaño grande para el título
+        pdf.text('Título del Informe/reporte', pageMargin, yPosition);
+        yPosition += 10; // Espacio después del título
+
+        pdf.setFontSize(12); // Tamaño más pequeño para el texto normal
+        pdf.text('Este es un párrafo introductorio que explica el contexto del gráfico.', pageMargin, yPosition);
+        yPosition += 10 + textMargin; // Ajuste después del párrafo
+
+        // Calcula el tamaño de la imagen para mantener la relación de aspecto
+        const imgProps = pdf.getImageProperties(imgData);
+        const imgWidth = pageWidth - pageMargin * 2;
+        const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+        yPosition = Math.min(yPosition, pageHeight - imgHeight - pageMargin); // Asegura que la imagen no se salga de la página
+
+        // Añade la imagen
+        pdf.addImage(imgData, 'PNG', pageMargin, yPosition, imgWidth, imgHeight);
+
+        // Actualiza la posición Y después de la imagen
+        yPosition += imgHeight + textMargin;
+
+        // Asegúrate de que la nueva posición no se salga de la página para el texto final
+        if (yPosition >= pageHeight - pageMargin) {
+            pdf.addPage();
+            yPosition = pageMargin; // Restablece la posición a la parte superior de la nueva página
+        }
+
+        // Añade el texto final después de la imagen
+        pdf.text('Este párrafo explica detalles adicionales sobre los datos del gráfico.', pageMargin, yPosition);
+
+        // Guarda el documento
+        pdf.save("download.pdf");
+    });
+}
+
 const COLORS = ['#ADDF00', '#13FEB3', '#FFBB28', '#FF8042']; // Colores para cada sección del gráfico Doughnut (ahora usando PieChart)
 
 function AdminDashboard() {
@@ -23,7 +82,7 @@ function AdminDashboard() {
         <div className='container' >
             <div className="admin-dashboard">
                 <div className='row'>
-                    <div className='chart-container'>
+                    <div id="chart1" className='chart-container'>
                         <ResponsiveContainer width="99%" height="100%" aspect={4 / 3}>
                             <h2>Progreso de tareas</h2>
                             <PieChart>
@@ -48,7 +107,7 @@ function AdminDashboard() {
                         </ResponsiveContainer>
                     </div>
 
-                    <div className='chart-container'>
+                    <div id="chart2" className='chart-container'>
                         <h2>Consumo de Materiales por Operador</h2>
                         <ResponsiveContainer width="99%" height="100%" aspect={4 / 3}>
                             <BarChart data={dataBarChart} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -66,13 +125,13 @@ function AdminDashboard() {
                 </div>
 
                 <div className='row'>
-                    <div className='chart-container'>
+                    <div id="chart3" className='chart-container'>
                         <h2>Progreso individual de tareas</h2>
                         <ResponsiveContainer width="99%" height="100%" aspect={10 / 3}>
                             <BarChart layout="vertical" data={dataBarChart} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis type="number" />
-                                <YAxis dataKey="name" type="category"/>
+                                <YAxis dataKey="name" type="category" />
                                 <Tooltip />
                                 <Legend />
                                 <Bar dataKey="pv" stackId="a" fill="#8884d8" barSize={10} />
@@ -82,6 +141,9 @@ function AdminDashboard() {
                         </ResponsiveContainer>
                     </div>
                 </div>
+
+                <button className='standard-button' onClick={exportPDF}>Exportar a PDF</button>
+
             </div>
         </div>
 
