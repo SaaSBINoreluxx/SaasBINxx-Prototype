@@ -88,9 +88,11 @@ legend {
 
 label {
     margin-left: 8px; /* Espacio entre el checkbox y su etiqueta */
-}
+    margin-right: 10px;
+}                                                           
 
 .fieldset {
+    width: 80%;
     border: 1px solid #ddd; /* Borde sutil para cada grupo */
     padding: 10px;
     margin-bottom: 20px; /* Espacio entre cada grupo */
@@ -177,6 +179,7 @@ label {
 
 
 @media (max-width: 700px) {
+
     .form-container {
         width: 90%;
     }
@@ -185,6 +188,9 @@ label {
     }
     .form-page{
         width: 90%;
+    }
+    .fieldset{
+        width: 95%;
     }
     .standard-button{
         width: 65%;

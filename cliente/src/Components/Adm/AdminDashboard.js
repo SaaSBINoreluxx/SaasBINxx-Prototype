@@ -8,9 +8,13 @@ import "./AdminDashboard.css"
 // Datos de ejemplo para el gráfico
 const data = [
     { name: 'Tareas completadas', value: 400 },
-    { name: 'Tareas pendientes', value: 300 },
+    { name: 'Tareas pendientes', value: 200 },
+    { name: 'Tareas en progreso', value: 150 },
+    { name: 'Tareas no iniciadas', value: 15 },
     // Añade más datos según sea necesario
 ];
+
+const COLORS = ['#00A468', '#E83109', '#DAD700', '#6D6D6D']; // Colores para cada sección del gráfico Doughnut (ahora usando PieChart)
 
 const dataBarChart = [
     { name: 'Enero', uv: 4000, pv: 2400, amt: 2400 },
@@ -21,7 +25,7 @@ const dataBarChart = [
 
 const exportPDF = () => {
     const input = document.getElementById('chart1');
-    html2canvas(input, {scale: 2,}).then((canvas) => { // scale:2 Aumenta la resolución de la imagen sin estop la imagen muestra fondo irregular
+    html2canvas(input, { scale: 2, }).then((canvas) => { // scale:2 Aumenta la resolución de la imagen sin estop la imagen muestra fondo irregular
         const imgData = canvas.toDataURL('image/png');
 
         // Inicia un nuevo documento PDF en formato A4
@@ -75,7 +79,7 @@ const exportPDF = () => {
     });
 }
 
-const COLORS = ['#ADDF00', '#13FEB3', '#FFBB28', '#FF8042']; // Colores para cada sección del gráfico Doughnut (ahora usando PieChart)
+
 
 function AdminDashboard() {
     return (
@@ -85,7 +89,9 @@ function AdminDashboard() {
                     <div id="chart1" className='chart-container'>
                         <ResponsiveContainer width="99%" height="100%" aspect={4 / 3}>
                             <h2>Progreso de tareas</h2>
+
                             <PieChart>
+                                <Legend layout="vertical" align="right" verticalAlign="middle" />
                                 <Pie
                                     data={data}
                                     cx="50%"

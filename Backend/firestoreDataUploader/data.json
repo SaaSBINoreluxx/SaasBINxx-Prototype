@@ -1,0 +1,127 @@
+{
+    "operadores": [
+      {
+        "nombre": "Elena",
+        "apellido": "Ramirez",
+        "id": "op001",
+        "rol": "Operadora de Campo",
+        "estado": "Activo"
+      },
+      {
+        "nombre": "Carlos",
+        "apellido": "Fernández",
+        "id": "op002",
+        "rol": "Operador de Campo",
+        "estado": "Activo"
+      }
+    ],
+    "equipos": [
+      {
+        "nombre": "Dron de Inspección",
+        "tipo": "Electrónico",
+        "estado": "Disponible",
+        "operadorAsignadoID": null
+      },
+      {
+        "nombre": "Generador Portátil",
+        "tipo": "Electrónico",
+        "estado": "En Uso",
+        "operadorAsignadoID": "op001"
+      }
+    ],
+    "materiales": [
+      {
+        "nombre": "Cables Eléctricos",
+        "cantidadDisponible": 100,
+        "cantidadAsignada": 20
+      },
+      {
+        "nombre": "Tubos PVC",
+        "cantidadDisponible": 150,
+        "cantidadAsignada": 30
+      }
+    ],
+    "herramientas": [
+      {
+        "nombre": "Taladro Inalámbrico",
+        "estado": "Disponible",
+        "operadorAsignadoID": null
+      },
+      {
+        "nombre": "Juego de Llaves",
+        "estado": "En Uso",
+        "operadorAsignadoID": "op002"
+      }
+    ],
+    "tareas": [
+      {
+        "descripcion": "Instalación de cableado eléctrico",
+        "operadorID": "op001",
+        "fechaInicio": "2023-03-21",
+        "fechaFin": "2023-03-22",
+        "estado": "Completada",
+        "piezasConsumidas": {
+          "Cables Eléctricos": 20
+        }
+      },
+      {
+        "descripcion": "Mantenimiento de tuberías",
+        "operadorID": "op002",
+        "fechaInicio": "2023-03-23",
+        "fechaFin": "2023-03-24",
+        "estado": "Pendiente",
+        "piezasConsumidas": {
+          "Tubos PVC": 30
+        }
+      }
+    ],
+    "registrosAlmacen": [
+      {
+        "tipoItem": "Equipo",
+        "itemID": "Generador Portátil",
+        "cantidad": 1,
+        "fecha": "2023-03-20",
+        "operadorID": "op001",
+        "tipoMovimiento": "Salida"
+      },
+      {
+        "tipoItem": "Material",
+        "itemID": "Cables Eléctricos",
+        "cantidad": 20,
+        "fecha": "2023-03-21",
+        "operadorID": "op001",
+        "tipoMovimiento": "Salida"
+      }
+    ],
+    "checklists": [
+      {
+        "operadorID": "op001",
+        "fecha": "2023-03-21",
+        "itemsVerificados": [
+          "Dron de Inspección",
+          "Generador Portátil"
+        ]
+      },
+      {
+        "operadorID": "op002",
+        "fecha": "2023-03-23",
+        "itemsVerificados": [
+          "Taladro Inalámbrico"
+        ]
+      }
+    ],
+    "indicadores": [
+      {
+        "tipoIndicador": "Equipos en Uso",
+        "valor": 2,
+        "fecha": "2023-03-25",
+        "otrosDetalles": "Detalle adicional sobre los equipos"
+      },
+      {
+        "tipoIndicador": "Materiales Consumidos",
+        "valor": 50,
+        "fecha": "2023-03-25",
+        "otrosDetalles": "Detalle adicional sobre los materiales"
+      }
+    ]
+  }

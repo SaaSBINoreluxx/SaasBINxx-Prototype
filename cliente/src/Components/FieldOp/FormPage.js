@@ -3,9 +3,9 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import './FormPage.css';
 
 function FormPage() {
-    const electronicEquipment = ['Multímetro', 'Osciloscopio', 'Destornillador eléctrico', 'Manómetro digital', 'Manómetro analógico', 'Pulmón artificial', 'Monitor 7"', 'Aspiradora de mano'];
-    const tools = ['Destornillador estrella', 'Llave universal 11', 'Llave universal 13', 'Llave universal ajustable'];
-    const materials = ['Manguera corrugada', 'Sensores de oxígeno', 'Precintos', 'Teflón', 'Tornillos', 'Paño absorbente', 'Paño de microfibra', 'Alcohol isopropílico', 'Silicona líquida'];
+    const electronicEquipment = ['Multímetro', 'Osciloscopio', 'Destornillador eléctrico', 'Vatímero', 'Monitor 7"'];
+    const tools = ['Juego de destornilladores', 'Juego de Llaves', 'Juego de dados', 'Juego de alicates','Prensa neumática'];
+    const materials = ['Terminales', 'Aislante termoretráctil', 'Paños', 'Cable'];
 
     const [activities, setActivities] = useState([{ id: Date.now(), description: '', ordinal: 1 }]); // Estado para manejar dinámicamente las actividades
     const [requireSpareParts, setRequireSpareParts] = useState(false); // Estado para manejar si se requieren repuestos

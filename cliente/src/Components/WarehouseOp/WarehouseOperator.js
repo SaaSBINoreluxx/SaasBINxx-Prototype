@@ -9,6 +9,12 @@ function WarehouseOperator() {
     const [itemQuantities, setItemQuantities] = useState({ card1: {}, card2: {}, card3: {} });
     const [visiblePopup, setVisiblePopup] = useState(null); // Cambio aquí para controlar cuál popup está visible
     const [returnPopupVisible, setReturnPopupVisible] = useState(false);
+    const [operatorDetails, setOperatorDetails] = useState({
+        nombre: '',
+        apellido: '',
+        id: '',
+        mensaje: ''  // Asumiendo que tienes un campo para un mensaje o comentario
+    });
 
     const cardInfo = [
         { id: 'card1', text: 'Equipos', icon: BsDeviceSsdFill },
@@ -53,6 +59,43 @@ function WarehouseOperator() {
 
     const handleTogglePopup = (card) => {
         setVisiblePopup(visiblePopup === card ? null : card); // Cambio aquí para mostrar u ocultar el popup
+        console.log(selectedItems);
+        console.log(itemQuantities);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault(); // Evita el comportamiento predeterminado del formulario
+
+        // Aquí construyes el objeto con los datos que quieres enviar
+        const dataToSend = {
+            //selectedItems,
+            operatorDetails,
+            itemQuantities,
+
+            // Añade cualquier otro dato que necesites enviar
+        };
+
+        // Aquí envías los datos al backend
+        try {
+            const response = await fetch('http://localhost:5000/api/warehouse/register-items-out', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSend),
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al enviar los datos');
+            }
+
+            const responseData = await response.json();
+            console.log('Datos enviados correctamente:', responseData);
+            // Manejo adicional según sea necesario
+        } catch (error) {
+            console.error('Error al enviar los datos:', error);
+            // Manejo adicional de errores
+        }
     };
 
 
@@ -64,10 +107,34 @@ function WarehouseOperator() {
                     <h1>Registro de asignación</h1>
 
                     <form id='assetsOut' >
-                        <input className='field-element' type="text" placeholder="Nombre" />
-                        <input className='field-element' type="text" placeholder="Apellido" />
-                        <input className='field-element' type="text" placeholder="ID" />
-                        <textarea className='field-element' placeholder="Mensaje"></textarea>
+                        <input
+                            className="field-element"
+                            type="text"
+                            placeholder="Nombre"
+                            value={operatorDetails.nombre}
+                            onChange={(e) => setOperatorDetails(prev => ({ ...prev, nombre: e.target.value }))}
+                        />
+                        <input
+                            className="field-element"
+                            type="text"
+                            placeholder="Apellido"
+                            value={operatorDetails.apellido}
+                            onChange={(e) => setOperatorDetails(prev => ({ ...prev, apellido: e.target.value }))}
+                        />
+                        <input
+                            className="field-element"
+                            type="text"
+                            placeholder="ID"
+                            value={operatorDetails.id}
+                            onChange={(e) => setOperatorDetails(prev => ({ ...prev, id: e.target.value }))}
+                        />
+                        <textarea
+                            className="field-element"
+                            type="text"
+                            placeholder="Observaciones"
+                            value={operatorDetails.mensaje}
+                            onChange={(e) => setOperatorDetails(prev => ({ ...prev, mensaje: e.target.value }))}
+                        />
 
 
                         <div className='cards-container' >
@@ -195,7 +262,7 @@ function WarehouseOperator() {
                         </div>
 
 
-                        <button className='standard-button' type="submit">Registrar Salida</button>
+                        <button className='standard-button' type="submit" onClick={handleSubmit} >Registrar Salida</button>
                     </form>
 
                 </div>
