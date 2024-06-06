@@ -5,8 +5,8 @@ const {db} = require('./firebase.js')
 const warehouseRoutes = require('./src/api/routes/warehouseRoutes');
 const app = express();
 app.use(cors({
-    //origin: 'https://saasbinxx-prototype-front.onrender.com'
-    origin: 'http://localhost:3000',
+    origin: 'https://saasbinxx-prototype-front.onrender.com',
+    //origin: 'http://localhost:3000',
     //origin: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Los métodos HTTP permitidos
     credentials: true // Permite que el frontend envíe cookies y otros datos de autenticación
